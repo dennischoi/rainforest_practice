@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
 
-
-
+root 'items#index'
 
 resources :items
-resources :users, only: %i(new create)
-
+resource :users, only: %i(new create)
+resource :sessions, only: %i(new create destroy)
 
 
 
