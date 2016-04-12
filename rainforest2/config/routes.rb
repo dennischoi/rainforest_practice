@@ -2,8 +2,9 @@ Rails.application.routes.draw do
 
 
 
-resources :items
 
+resources :items
+resources :users, only: %i(new create)
 
 
 
