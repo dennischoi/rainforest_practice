@@ -1,6 +1,22 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.all
+    @items = if params[:search]
+      Item.where("LOWER(name) LIKE LOWER(?)", "%#{params[:search]}%")
+    else
+    Item.all
+    end
+    # For the AJAX and JS GET method
+    # if request.xhr?
+    #   render @items
+    # end
+
+
+    # Better way of implementing format for all the necessary code variations
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
   def show
